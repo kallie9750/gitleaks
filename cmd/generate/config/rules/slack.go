@@ -25,7 +25,7 @@ func SlackBotToken() *config.Rule {
 	// validate
 	tps := utils.GenerateSampleSecrets("bot", "xoxb-781236542736-2364535789652-GkwFDQoHqzXDVsC6GzqYUypD")
 	tps = append(tps,
-		// https://github.com/metabase/metabase/blob/74cfb332140680425c7d37d347854160cc997ea8/frontend/src/metabase/admin/settings/slack/components/SlackForm/SlackForm.tsx#L47
+		// ://github.com/metabase/metabase/blob/74cfb332140680425c7d37d347854160cc997ea8/frontend/src/metabase/admin/settings/slack/components/SlackForm/SlackForm.tsx#L47
 		`"bot_token1": "xoxb-781236542736-2364535789652-GkwFDQoHqzXDVsC6GzqYUypD"`, // gitleaks:allow
 		// https://github.com/jonz-secops/TokenTester/blob/978e9f3eabc7e9978769cfbba10735afa3bf627e/slack#LL44C27-L44C86
 		`"bot_token2": "xoxb-263594206564-2343594206574-FGqddMF8t08v8N7Oq4i57vs1MBS"`, // gitleaks:allow
@@ -272,7 +272,7 @@ func SlackWebHookUrl() *config.Rule {
 		Description: "Discovered a Slack Webhook, which could lead to unauthorized message posting and data leakage in Slack channels.",
 		// If this generates too many false-positives we should define an allowlist (e.g., "xxxx", "00000").
 		Regex: regexp.MustCompile(
-			`(?:https?://)?hooks.slack.com/(?:services|workflows)/[A-Za-z0-9+/]{43,46}`),
+			`^https:\/\/hooks\.slack\.com\/(services|workflows)\/[A-Za-z0-9+\/-]{43,46}$`),
 		Keywords: []string{
 			"hooks.slack.com",
 		},
