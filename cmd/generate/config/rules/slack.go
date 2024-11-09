@@ -272,7 +272,7 @@ func SlackWebHookUrl() *config.Rule {
 		Description: "Discovered a Slack Webhook, which could lead to unauthorized message posting and data leakage in Slack channels.",
 		// If this generates too many false-positives we should define an allowlist (e.g., "xxxx", "00000").
 		Regex: regexp.MustCompile(
-			`^(?:https?://)?hooks.slack.com/(?:services|workflows)/[A-Za-z0-9+/]{43,46}`),
+			`^(?:https?://)?hooks\.slack\.com/(?:services|workflows)/[A-Za-z0-9+/]{43,46}`),
 		Keywords: []string{
 			"hooks.slack.com",
 		},
